@@ -18,17 +18,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     for (const value of results.data) {
-        const humanData = DateTime.fromISO(value.date).toFormat('DDD')
+        const day = DateTime.fromISO(value.date).toFormat('d')
+        const months = DateTime.fromISO(value.date).toFormat('LLLL')
+        const year = DateTime.fromISO(value.date).toFormat('y')
 
         const printHTML = document.querySelector('#coronadata');
 
         printHTML.innerHTML += `
         <ul>
-        <li>${humanData}</li>
-        <li>Cases: ${value.newCases} </li>
+        <li class="day">${day}</li>
+        <li class="months">${months}</li>
+        <li class="year">${year}</li><hr>
+        <li class="cases">Cases: ${value.newCases} </li>
         </ul>`;
     }
-    const searchValue = document.querySelector('#button').addEventListener('click', function (event) {
+    document.querySelector('#button').addEventListener('click', function (event) {
         event.preventDefault()
         const dateInput = document.querySelector('#search').value;
         console.log(`date input: ${dateInput}`)
@@ -36,7 +40,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (results.data[i].date == dateInput) {
                 const caseResult = results.data[i].newCases
                 const printDataSearch = document.querySelector('#result');
-                printDataSearch.innerHTML = `<p>${dateInput} ${caseResult}</p>`
+                printDataSearch.innerHTML = `<p>Result: Date: ${dateInput} Cases: ${caseResult}</p>`
             }
         }
     });
