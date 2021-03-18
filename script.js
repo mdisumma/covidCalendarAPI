@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (results.data[i].date == dateInput) {
                 const caseResult = results.data[i].newCases
                 const printDataSearch = document.querySelector('#result');
-                printDataSearch.innerHTML = `<p>Result: Date: ${dateInput} Cases: ${caseResult}</p>`
+                printDataSearch.innerHTML = `<p>Result date:${dateInput} cases:${caseResult}</p>`
             }
         }
     });
